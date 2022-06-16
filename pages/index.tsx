@@ -5,7 +5,7 @@ const HomeNoAuth = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Home1</title>
       </Head>
       <main></main>
     </>
