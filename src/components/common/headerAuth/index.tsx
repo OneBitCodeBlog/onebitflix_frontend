@@ -12,6 +12,19 @@ const HeaderAuth = function () {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [initials, setInitials] = useState("");
+  const [searchName, setSearchName] = useState("");
+
+  const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    router.push(`search?name=${searchName}`);
+    setSearchName("");
+  };
+
+  const handleSearchClick = () => {
+    router.push(`search?name=${searchName}`);
+    setSearchName("");
+  };
 
   useEffect(() => {
     profileService.fetchCurrent().then((user) => {
@@ -44,18 +57,23 @@ const HeaderAuth = function () {
           />
         </Link>
         <div className="d-flex align-items-center">
-          <Form>
+          <Form onSubmit={handleSearch}>
             <Input
               name="search"
               type="search"
               placeholder="Pesquisar"
               className={styles.input}
+              value={searchName}
+              onChange={(event) => {
+                setSearchName(event.currentTarget.value.toLowerCase());
+              }}
             />
           </Form>
           <img
             src="/homeAuth/iconSearch.svg"
             alt="lupaHeader"
             className={styles.searchImg}
+            onClick={handleSearchClick}
           />
           <p className={styles.userProfile} onClick={handleOpenModal}>
             {initials}
