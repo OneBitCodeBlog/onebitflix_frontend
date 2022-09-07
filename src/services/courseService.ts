@@ -5,7 +5,7 @@ export type EpisodeType = {
   name: string;
   synopsis: string;
   order: number;
-  videUrl: string;
+  videoUrl: string;
   secondsLong: number;
 };
 
